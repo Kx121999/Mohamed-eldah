@@ -3,435 +3,333 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="الموقع الرسمي للشيخ محمد منتصر الدح - كروان آل البيت">
 <title>الشيخ محمد منتصر الدح | كروان آل البيت</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&family=Amiri:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Scheherazade+New:wght@400;700&display=swap');
 
-:root {
-  --bg: #0a1210;
-  --bg-card: #121f1a;
-  --gold: #c9a961;
-  --gold-light: #e6d5a8;
-  --text: #f8f8f6;
-  --text-dim: #a8a8a0;
-  --border: rgba(201, 169, 97, 0.15);
+:root{
+  --bg:#0f1a16;
+  --bg-2:#17251f;
+  --gold:#d4af7a;
+  --gold-2:#e8d5b7;
+  --text:#f2f2f0;
+  --text-2:#b8c2bd;
+  --radius:20px;
 }
 
-* {margin:0; padding:0; box-sizing:border-box; scroll-behavior: smooth;}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:radial-gradient(1200px 600px at 80% -10%,rgba(212,175,122,.08),transparent),
+             radial-gradient(900px 500px at 10% 110%,rgba(23,37,31,.8),transparent),
+             var(--bg);
+  color:var(--text);
+  font-family:'Cairo',sans-serif;
+  line-height:1.9;
+}
+.container{width:min(1200px,92%);margin:auto}
+img{max-width:100%;height:auto;display:block}
 
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'Tajawal', sans-serif;
+/* Header */
+header{
+  min-height:100svh;
+  display:grid;
+  place-items:center;
+  position:relative;
+  overflow:hidden;
+}
+header::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:url('./images/pattern.svg') center/300px repeat;
+  opacity:.06;
+  pointer-events:none;
+}
+.hero{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:60px;
+  align-items:center;
+}
+.hero-img{
+  border-radius:var(--radius);
+  overflow:hidden;
+  border:1px solid rgba(212,175,122,.2);
+  box-shadow:0 30px 80px rgba(0,0,0,.4);
+}
+.hero-img img{
+  width:100%;
+  aspect-ratio:4/5;
+  object-fit:cover;
+  object-position:center 15%;
+}
+h1{
+  font-family:'Scheherazade New',serif;
+  font-size:clamp(2.6rem,5vw,4.2rem);
+  color:var(--gold-2);
+  line-height:1.3;
+}
+.sub{
+  color:var(--text-2);
+  font-size:1.2rem;
+  margin:15px 0 25px;
+}
+.ayah{
+  font-family:'Scheherazade New',serif;
+  font-size:1.4rem;
+  color:var(--gold);
+  background:rgba(212,175,122,.08);
+  padding:20px 25px;
+  border-radius:14px;
+  border:1px solid rgba(212,175,122,.15);
+}
+.btns{display:flex;gap:15px;flex-wrap:wrap;margin-top:35px}
+.btn{
+  padding:14px 32px;
+  border-radius:12px;
+  text-decoration:none;
+  font-weight:600;
+  transition:.3s;
+  border:1px solid var(--gold);
+}
+.btn.primary{background:var(--gold);color:#1a120a}
+.btn.ghost{background:transparent;color:var(--gold)}
+.btn:hover{transform:translateY(-3px);box-shadow:0 10px 25px rgba(212,175,122,.25)}
+
+/* Sections */
+section{padding:100px 0}
+.section-title{
+  font-family:'Scheherazade New',serif;
+  font-size:clamp(2rem,4vw,2.8rem);
+  color:var(--gold-2);
+  text-align:center;
+  margin-bottom:50px;
 }
 
-body.lightbox-open {overflow: hidden;}
+/* Biography Cards */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:30px;
+}
+.card{
+  background:linear-gradient(180deg,var(--bg-2),transparent);
+  border:1px solid rgba(212,175,122,.15);
+  border-radius:var(--radius);
+  overflow:hidden;
+  transition:.4s;
+}
+.card:hover{
+  transform:translateY(-6px);
+  border-color:rgba(212,175,122,.35);
+  box-shadow:0 20px 50px rgba(0,0,0,.4);
+}
+.card-img{
+  width:100%;
+  aspect-ratio:16/9;
+  object-fit:cover;
+  object-position:center 20%;
+}
+.card-body{padding:30px}
+.card h3{
+  font-family:'Scheherazade New',serif;
+  font-size:2rem;
+  color:var(--gold);
+  margin-bottom:15px;
+}
+.card p{color:var(--text-2);margin-bottom:12px}
 
-.container {max-width: 1280px; margin: auto; padding: 0 40px;}
-img {max-width: 100%; height: auto; display: block;}
-
-/* Hero */
-.hero {
-  min-height: 100vh;
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  align-items: center;
-  gap: 60px;
-  padding: 100px 0;
+/* Gallery Masonry */
+.gallery{
+  columns:3 280px;
+  column-gap:20px;
+}
+.gallery figure{
+  break-inside:avoid;
+  margin-bottom:20px;
+  border-radius:16px;
+  overflow:hidden;
+  border:1px solid rgba(212,175,122,.15);
+  cursor:pointer;
+  transition:.3s;
+}
+.gallery figure:hover{transform:scale(1.02);border-color:var(--gold)}
+.gallery img{
+  width:100%;
+  height:auto;
+  object-fit:cover;
 }
 
-.hero-image {
-  border-radius: 24px;
-  overflow: hidden;
-  border: 2px solid var(--border);
+/* Video */
+.video-wrap{
+  background:var(--bg-2);
+  border:1px solid rgba(212,175,122,.15);
+  border-radius:var(--radius);
+  padding:20px;
+}
+.video-wrap iframe{
+  width:100%;
+  aspect-ratio:16/9;
+  border:none;
+  border-radius:12px;
 }
 
-.hero-image img {
-  width: 100%;
-  aspect-ratio: 4/5;
-  object-fit: cover;
-  object-position: center 20%;
+/* Footer */
+footer{
+  text-align:center;
+  padding:40px 20px;
+  border-top:1px solid rgba(212,175,122,.15);
+  color:var(--text-2);
 }
-
-h1 {
-  font-family: 'Amiri', serif;
-  font-size: clamp(2.8rem, 5vw, 4.5rem);
-  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  line-height: 1.2;
-  margin-bottom: 20px;
-}
-
-.bismillah {
-  font-family: 'Amiri', serif;
-  font-size: 2rem;
-  color: var(--gold);
-  margin-bottom: 25px;
-}
-
-.btn-group {
-  display: flex;
-  gap: 15px;
-  flex-wrap: wrap;
-  margin-top: 35px;
-}
-
-.btn {
-  padding: 14px 38px;
-  border-radius: 12px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  border: 2px solid var(--gold);
-  display: inline-block;
-}
-
-.btn-primary {background: var(--gold); color: var(--bg);}
-.btn-ghost {background: transparent; color: var(--gold);}
-.btn:hover {transform: translateY(-3px);}
-
-section {padding: 100px 0;}
-
-.section-header {
-  text-align: center;
-  margin-bottom: 70px;
-}
-
-.section-title {
-  font-family: 'Amiri', serif;
-  font-size: clamp(2.2rem, 4vw, 3.2rem);
-  color: var(--gold);
-  margin-bottom: 15px;
-}
-
-/* Biography */
-.bio-wrapper {display: flex; flex-direction: column; gap: 60px;}
-
-.bio-card {
-  display: grid;
-  grid-template-columns: 1fr 1.3fr;
-  gap: 40px;
-  align-items: start;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 40px;
-}
-
-.bio-img {
-  border-radius: 16px;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  position: sticky;
-  top: 100px;
-}
-
-.bio-img img {
-  width: 100%;
-  aspect-ratio: 3/4;
-  object-fit: cover;
-  object-position: center 20%;
-}
-
-.bio-text h3 {
-  font-family: 'Amiri', serif;
-  font-size: 2.2rem;
-  color: var(--gold);
-  margin-bottom: 20px;
-}
-
-.bio-text p {
-  font-size: 1.05rem;
-  line-height: 2;
-  color: var(--text-dim);
-  margin-bottom: 15px;
-}
-
-/* Gallery */
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 20px;
-}
-
-.gallery-item {
-  border-radius: 16px;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.gallery-item:hover {
-  transform: translateY(-5px);
-  border-color: var(--gold);
-}
-
-.gallery-item img {
-  width: 100%;
-  aspect-ratio: 3/4;
-  object-fit: cover;
-  object-position: center 30%;
-  transition: transform 0.5s ease;
-}
-
-.gallery-item:hover img {transform: scale(1.05);}
+footer strong{color:var(--gold)}
 
 /* Lightbox */
-.lightbox {
-  position: fixed;
-  inset: 0;
-  background: rgba(10, 18, 16, 0.96);
-  backdrop-filter: blur(20px);
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s ease;
+.lightbox{
+  position:fixed;inset:0;
+  background:rgba(15,26,22,.96);
+  display:none;
+  place-items:center;
+  z-index:9999;
+  backdrop-filter:blur(10px);
+}
+.lightbox.open{display:grid}
+.lightbox img{
+  max-width:90vw;
+  max-height:90vh;
+  border-radius:14px;
+  box-shadow:0 30px 80px rgba(0,0,0,.6);
+}
+.lightbox-close{
+  position:absolute;
+  top:30px;
+  left:30px;
+  background:var(--gold);
+  color:#1a120a;
+  border:none;
+  width:45px;height:45px;
+  border-radius:50%;
+  font-size:1.5rem;
+  cursor:pointer;
 }
 
-.lightbox.active {opacity: 1; visibility: visible;}
-
-.lightbox-content {
-  position: relative;
-  max-width: 90vw;
-  max-height: 90vh;
-}
-
-.lightbox-img {
-  max-width: 100%;
-  max-height: 90vh;
-  object-fit: contain;
-  border-radius: 12px;
-}
-
-.lightbox-close,.lightbox-nav {
-  position: absolute;
-  background: rgba(201, 169, 97, 0.9);
-  color: var(--bg);
-  border: none;
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-
-.lightbox-close {top: -55px; left: 0;}
-.lightbox-prev {right: -60px; top: 50%; transform: translateY(-50%);}
-.lightbox-next {left: -60px; top: 50%; transform: translateY(-50%);}
-
-.media-container,.contact-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  padding: 40px;
-}
-
-.media-container iframe {
-  width: 100%;
-  aspect-ratio: 16/9;
-  border-radius: 12px;
-  border: none;
-}
-
-.contact-card {text-align: center; max-width: 700px; margin: 0 auto;}
-
-footer {
-  text-align: center;
-  padding: 40px 20px;
-  border-top: 1px solid var(--border);
-  color: var(--text-dim);
-}
-
-footer strong {color: var(--gold);}
-
-@media(max-width: 1024px) {
-.hero,.bio-card {grid-template-columns: 1fr;}
-.bio-img {position: static;}
-.hero-image {max-width: 500px; margin: 0 auto;}
-.lightbox-prev {right: 15px;}
-.lightbox-next {left: 15px;}
-}
-
-@media(max-width: 640px) {
-.container {padding: 0 20px;}
- section {padding: 70px 0;}
-.bio-card,.media-container,.contact-card {padding: 25px 20px;}
-}
+/* Responsive */
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;text-align:center}
+  .hero-img{max-width:420px;margin:auto}
+  .cards{grid-template-columns:1fr}
+  .btns{justify-content:center}
 </style>
 </head>
 <body>
 
-<section class="hero">
-  <div class="container" style="display: contents;">
-    <div class="hero-content">
-      <div class="bismillah">بسم الله الرحمن الرحيم</div>
+<header>
+  <div class="container hero">
+    <div>
+      <div style="color:var(--gold);font-size:1.8rem;margin-bottom:15px">بسم الله الرحمن الرحيم</div>
       <h1>الشيخ محمد منتصر الدح</h1>
-      <p style="font-size: 1.3rem; color: var(--text-dim); margin-bottom: 20px;">كروان آل البيت • مطرب الأرواح • مربي المريدين</p>
-      <p style="font-family: 'Amiri', serif; font-size: 1.2rem; color: var(--gold-light); line-height: 2; margin: 30px 0 40px;">
-        "إِنَّ اللَّهَ وَمَلَائِكَتَهُ يُصَلُّونَ عَلَى النَّبِيِّ<br>
-        يَا أَيُّهَا الَّذِينَ آمَنُوا صَلُّوا عَلَيْهِ وَسَلِّمُوا تَسْلِيمًا"
-      </p>
-      <div class="btn-group">
-        <a href="#biography" class="btn btn-primary">السيرة العطرة</a>
-        <a href="#gallery" class="btn btn-ghost">معرض الصور</a>
+      <p class="sub">كروان آل البيت • صوت الجنوب • مربي المريدين</p>
+      <div class="ayah">
+        إِنَّ اللَّهَ وَمَلَائِكَتَهُ يُصَلُّونَ عَلَى النَّبِيِّ<br>
+        يَا أَيُّهَا الَّذِينَ آمَنُوا صَلُّوا عَلَيْهِ وَسَلِّمُوا تَسْلِيمًا
+      </div>
+      <div class="btns">
+        <a href="#sira" class="btn primary">السيرة العطرة</a>
+        <a href="#gallery" class="btn ghost">معرض الصور</a>
+        <a href="#media" class="btn ghost">المكتبة</a>
       </div>
     </div>
-
-    <div class="hero-image">
-      <img src="./images/sheikh-montaser-hero.jpg" alt="الشيخ محمد منتصر الدح" loading="lazy">
+    <div class="hero-img">
+      <img src="./images/sheikh-montaser-hero.jpg" alt="الشيخ محمد منتصر الدح" loading="lazy" 
+           onerror="this.src='./images/placeholder.jpg'">
     </div>
   </div>
-</section>
+</header>
 
-<section id="biography">
+<section id="sira">
   <div class="container">
-    <div class="section-header">
-      <h2 class="section-title">السيرة العطرة</h2>
-    </div>
-
-    <div class="bio-wrapper">
-      <div class="bio-card">
-        <div class="bio-img">
-          <img src="./images/sheikh-hasan.jpg" alt="العارف بالله الحاج حسن عمران الدح" loading="lazy">
-        </div>
-        <div class="bio-text">
+    <h2 class="section-title">السيرة العطرة</h2>
+    <div class="cards">
+      
+      <article class="card">
+        <img src="./images/sheikh-hasan.jpg" alt="العارف بالله الحاج حسن عمران الدح" class="card-img" loading="lazy" 
+             onerror="this.src='./images/placeholder.jpg'">
+        <div class="card-body">
           <h3>العارف بالله الحاج حسن عمران الدح</h3>
           <p>شيخ الطريقة الأحمدية الإدريسية بمركز إسنا، ومن أولياء الله الأكابر الغوثانيين. عمل على إحياء ذكر الله والعودة إلى الله واستغفاره ومداومة الصلاة على رسول الله ﷺ.</p>
-          <p>قام بإحياء الطريقة الأحمدية الإدريسية المنسوبة إلى السيد أحمد بن إدريس رضي الله عنه. مرت الطريقة بفترة ركود حتى فتح الله على شيخنا الجليل فاختاره السيد أحمد بن إدريس اختياراً باطنياً بأمر من المصطفى ﷺ وآل بيته الكرام.</p>
+          <p>قام بإحياء الطريقة الأحمدية الإدريسية المنسوبة إلى السيد أحمد بن إدريس رضي الله عنه. أنشأ العديد من الساحات في إسنا والأقصر وقنا والقاهرة.</p>
+          <p>انتقل إلى الرفيق الأعلى عام 1976 تاركاً تراثاً حافلاً من النهج القويم.</p>
         </div>
-      </div>
+      </article>
 
-      <div class="bio-card">
-        <div class="bio-img">
-          <img src="./images/sheikh-montaser.jpg" alt="الشيخ محمد منتصر الدح" loading="lazy">
-        </div>
-        <div class="bio-text">
+      <article class="card">
+        <img src="./images/sheikh-montaser.jpg" alt="الشيخ محمد منتصر الدح" class="card-img" loading="lazy"
+             onerror="this.src='./images/placeholder.jpg'">
+        <div class="card-body">
           <h3>الشيخ محمد منتصر الدح</h3>
-          <p>كروان آل البيت وصوت الجنوب. أحد أعلام المديح النبوي والذكر الصوفي في صعيد مصر. نشأ في بيت علم وذكر بمدينة إسنا بالأقصر.</p>
+          <p>كروان آل البيت وصوت الجنوب. أحد أعلام المديح النبوي والذكر الصوفي في صعيد مصر.</p>
           <p>يتميز بصوته الهادئ المؤثر الذي يلامس القلوب ويبعث السكينة، فلقبه محبوه بـ "كروان آل البيت" و"مطرب الأرواح".</p>
+          <p>له ساحة ومضيفة عامرة بالذكر في مسقط رأسه بإسنا، ويشارك في الفعاليات الدينية داخل مصر وخارجها.</p>
         </div>
-      </div>
+      </article>
+
     </div>
   </div>
 </section>
 
 <section id="gallery">
   <div class="container">
-    <div class="section-header">
-      <h2 class="section-title">معرض الصور</h2>
-    </div>
-
-    <div class="gallery-grid">
-      <div class="gallery-item">
-        <img src="./images/gallery1.jpg" alt="الشيخ محمد منتصر الدح" loading="lazy">
-      </div>
-      <div class="gallery-item">
-        <img src="./images/gallery2.jpg" alt="الشيخ محمد منتصر الدح أثناء المديح" loading="lazy">
-      </div>
-      <div class="gallery-item">
-        <img src="./images/gallery3.jpg" alt="الشيخ محمد منتصر الدح بالمسجد النبوي" loading="lazy">
-      </div>
-      <div class="gallery-item">
-        <img src="./images/gallery4.jpg" alt="مجلس الذكر" loading="lazy">
-      </div>
+    <h2 class="section-title">معرض الصور</h2>
+    <div class="gallery">
+      <figure><img src="./images/gallery1.jpg" alt="صورة 1" loading="lazy" onerror="this.src='./images/placeholder.jpg'"></figure>
+      <figure><img src="./images/gallery2.jpg" alt="صورة 2" loading="lazy" onerror="this.src='./images/placeholder.jpg'"></figure>
+      <figure><img src="./images/gallery3.jpg" alt="صورة 3" loading="lazy" onerror="this.src='./images/placeholder.jpg'"></figure>
+      <figure><img src="./images/gallery4.jpg" alt="صورة 4" loading="lazy" onerror="this.src='./images/placeholder.jpg'"></figure>
+      <figure><img src="./images/gallery5.jpg" alt="صورة 5" loading="lazy" onerror="this.src='./images/placeholder.jpg'"></figure>
+      <figure><img src="./images/gallery6.jpg" alt="صورة 6" loading="lazy" onerror="this.src='./images/placeholder.jpg'"></figure>
     </div>
   </div>
 </section>
 
 <section id="media">
   <div class="container">
-    <div class="section-header">
-      <h2 class="section-title">المكتبة الصوتية</h2>
-    </div>
-    <div class="media-container">
+    <h2 class="section-title">المكتبة الصوتية</h2>
+    <div class="video-wrap">
       <iframe src="https://www.youtube.com/embed?listType=user_uploads&list=almontser" allowfullscreen loading="lazy"></iframe>
-    </div>
-  </div>
-</section>
-
-<section id="contact">
-  <div class="container">
-    <div class="contact-card">
-      <h2 class="section-title">تواصل معنا</h2>
-      <p style="font-size: 1.2rem; color: var(--text-dim); margin: 15px 0;">📍 ساحة آل الدح - إسنا، الأقصر</p>
-      <div class="btn-group" style="margin-top: 30px; justify-content: center;">
-        <a href="https://www.facebook.com/share/1BKJStfFB8/" target="_blank" class="btn btn-primary">صفحة الفيسبوك</a>
-      </div>
     </div>
   </div>
 </section>
 
 <footer>
   <p>© 2026 موقع آل الدح - جميع الحقوق محفوظة</p>
-  <p style="margin-top: 15px;">تم التصميم والإشراف بواسطة: <strong>كريم عاطف</strong></p>
+  <p style="margin-top:10px">تم التصميم والإشراف بواسطة: <strong>كريم عاطف</strong></p>
 </footer>
 
 <div class="lightbox" id="lightbox">
-  <div class="lightbox-content">
-    <button class="lightbox-close" id="lightboxClose">×</button>
-    <button class="lightbox-nav lightbox-prev" id="lightboxPrev">›</button>
-    <button class="lightbox-nav lightbox-next" id="lightboxNext">‹</button>
-    <img src="" alt="" class="lightbox-img" id="lightboxImg">
-    <div class="lightbox-counter" id="lightboxCounter"></div>
-  </div>
+  <button class="lightbox-close">×</button>
+  <img src="" alt="" id="lightbox-img">
 </div>
 
 <script>
-const lightbox = document.getElementById('lightbox');
-const lightboxImg = document.getElementById('lightboxImg');
-const galleryItems = document.querySelectorAll('.gallery-item');
-let currentIndex = 0;
+// Lightbox
+const lightbox=document.getElementById('lightbox');
+const lightboxImg=document.getElementById('lightbox-img');
+const imgs=document.querySelectorAll('.gallery img');
 
-const images = Array.from(galleryItems).map(item => ({
-  src: item.querySelector('img').src,
-  alt: item.querySelector('img').alt
-}));
-
-function openLightbox(index) {
-  currentIndex = index;
-  lightboxImg.src = images[index].src;
-  lightboxImg.alt = images[index].alt;
-  document.getElementById('lightboxCounter').textContent = `${index + 1} / ${images.length}`;
-  lightbox.classList.add('active');
-  document.body.classList.add('lightbox-open');
-}
-
-function closeLightbox() {
-  lightbox.classList.remove('active');
-  document.body.classList.remove('lightbox-open');
-}
-
-function nextImage() {
-  currentIndex = (currentIndex + 1) % images.length;
-  openLightbox(currentIndex);
-}
-
-function prevImage() {
-  currentIndex = (currentIndex - 1 + images.length) % images.length;
-  openLightbox(currentIndex);
-}
-
-galleryItems.forEach((item, index) => {
-  item.addEventListener('click', () => openLightbox(index));
-});
-
-document.getElementById('lightboxClose').onclick = closeLightbox;
-document.getElementById('lightboxNext').onclick = nextImage;
-document.getElementById('lightboxPrev').onclick = prevImage;
-lightbox.onclick = (e) => {if(e.target === lightbox) closeLightbox();};
-
-document.addEventListener('keydown', (e) => {
-  if(!lightbox.classList.contains('active')) return;
-  if(e.key === 'Escape') closeLightbox();
-  if(e.key === 'ArrowRight') prevImage();
-  if(e.key === 'ArrowLeft') nextImage();
-});
+imgs.forEach(img=>{
+  img.addEventListener('click',()=>{
+    lightboxImg.src=img.src;
+    lightbox.classList.add('open');
+  })
+})
+lightbox.addEventListener('click',e=>{
+  if(e.target===lightbox||e.target.classList.contains('lightbox-close')){
+    lightbox.classList.remove('open')
+  }
+})
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape')lightbox.classList.remove('open')
+})
 </script>
 
 </body>
