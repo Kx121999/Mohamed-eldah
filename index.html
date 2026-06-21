@@ -24,22 +24,14 @@ body {
   background: var(--bg);
   color: var(--text);
   font-family: 'Tajawal', sans-serif;
-  overflow-x: hidden;
 }
 
 body.lightbox-open {overflow: hidden;}
 
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 0 L100 50 L50 100 L0 50 Z' fill='%23c9a961' fill-opacity='0.02'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 0;
-}
+.container {max-width: 1280px; margin: auto; padding: 0 40px;}
+img {max-width: 100%; height: auto; display: block;}
 
-.container {max-width: 1280px; margin: auto; padding: 0 40px; position: relative; z-index: 1;}
-
+/* Hero */
 .hero {
   min-height: 100vh;
   display: grid;
@@ -49,217 +41,149 @@ body::before {
   padding: 100px 0;
 }
 
-.hero-content {animation: fadeInRight 1s ease;}
-
 .hero-image {
-  position: relative;
   border-radius: 24px;
   overflow: hidden;
-  border: 3px solid var(--gold);
-  box-shadow: 0 30px 80px rgba(201, 169, 97, 0.25);
-  animation: fadeInLeft 1s ease;
+  border: 2px solid var(--border);
 }
 
 .hero-image img {
   width: 100%;
-  height: 700px;
+  aspect-ratio: 4/5;
   object-fit: cover;
-  display: block;
-}
-
-.hero-image::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 0%, rgba(10, 18, 16, 0.8) 100%);
-}
-
-.bismillah {
-  font-family: 'Amiri', serif;
-  font-size: 2.2rem;
-  color: var(--gold);
-  margin-bottom: 30px;
+  object-position: center 20%;
 }
 
 h1 {
   font-family: 'Amiri', serif;
-  font-size: 4.5rem;
-  font-weight: 700;
-  line-height: 1.2;
+  font-size: clamp(2.8rem, 5vw, 4.5rem);
   background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  line-height: 1.2;
   margin-bottom: 20px;
 }
 
-.hero-subtitle {
-  font-size: 1.4rem;
-  color: var(--text-dim);
-  font-weight: 300;
-  margin-bottom: 25px;
-}
-
-.divider {
-  width: 80px;
-  height: 3px;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
-  margin: 30px 0;
-}
-
-.hero-verse {
+.bismillah {
   font-family: 'Amiri', serif;
-  font-size: 1.3rem;
-  color: var(--gold-light);
-  line-height: 2.2;
-  margin-bottom: 40px;
+  font-size: 2rem;
+  color: var(--gold);
+  margin-bottom: 25px;
 }
 
 .btn-group {
   display: flex;
-  gap: 18px;
+  gap: 15px;
   flex-wrap: wrap;
+  margin-top: 35px;
 }
 
 .btn {
-  padding: 16px 42px;
+  padding: 14px 38px;
   border-radius: 12px;
   text-decoration: none;
   font-weight: 600;
-  font-size: 1.05rem;
   transition: all 0.3s ease;
   border: 2px solid var(--gold);
-  cursor: pointer;
   display: inline-block;
 }
 
-.btn-primary {
-  background: var(--gold);
-  color: var(--bg);
-}
+.btn-primary {background: var(--gold); color: var(--bg);}
+.btn-ghost {background: transparent; color: var(--gold);}
+.btn:hover {transform: translateY(-3px);}
 
-.btn-primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 30px rgba(201, 169, 97, 0.4);
-}
-
-.btn-ghost {
-  background: transparent;
-  color: var(--gold);
-}
-
-.btn-ghost:hover {
-  background: var(--gold);
-  color: var(--bg);
-}
-
-section {padding: 120px 0;}
+section {padding: 100px 0;}
 
 .section-header {
   text-align: center;
-  margin-bottom: 80px;
+  margin-bottom: 70px;
 }
 
 .section-title {
   font-family: 'Amiri', serif;
-  font-size: 3.2rem;
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
   color: var(--gold);
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
-.section-subtitle {
-  font-size: 1.2rem;
-  color: var(--text-dim);
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-.bio-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 80px;
-}
+/* Biography */
+.bio-wrapper {display: flex; flex-direction: column; gap: 60px;}
 
 .bio-card {
   display: grid;
   grid-template-columns: 1fr 1.3fr;
-  gap: 50px;
-  align-items: center;
+  gap: 40px;
+  align-items: start;
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: 24px;
-  padding: 50px;
-  transition: all 0.4s ease;
-}
-
-.bio-card:hover {
-  border-color: var(--gold);
-  box-shadow: 0 20px 60px rgba(201, 169, 97, 0.15);
+  border-radius: 20px;
+  padding: 40px;
 }
 
 .bio-img {
   border-radius: 16px;
   overflow: hidden;
-  border: 2px solid var(--border);
+  border: 1px solid var(--border);
+  position: sticky;
+  top: 100px;
 }
 
 .bio-img img {
   width: 100%;
-  height: 500px;
+  aspect-ratio: 3/4;
   object-fit: cover;
-  display: block;
+  object-position: center 20%;
 }
 
 .bio-text h3 {
   font-family: 'Amiri', serif;
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   color: var(--gold);
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
 
 .bio-text p {
-  font-size: 1.1rem;
-  line-height: 2.2;
+  font-size: 1.05rem;
+  line-height: 2;
   color: var(--text-dim);
-  margin-bottom: 18px;
+  margin-bottom: 15px;
 }
 
+/* Gallery */
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 25px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
 }
 
 .gallery-item {
-  position: relative;
   border-radius: 16px;
   overflow: hidden;
-  border: 2px solid var(--border);
-  aspect-ratio: 3/4;
+  border: 1px solid var(--border);
   cursor: pointer;
-  transition: all 0.4s ease;
+  transition: all 0.3s ease;
 }
 
 .gallery-item:hover {
-  transform: translateY(-8px);
+  transform: translateY(-5px);
   border-color: var(--gold);
-  box-shadow: 0 20px 50px rgba(201, 169, 97, 0.3);
 }
 
 .gallery-item img {
   width: 100%;
-  height: 100%;
+  aspect-ratio: 3/4;
   object-fit: cover;
-  transition: transform 0.6s ease;
+  object-position: center 30%;
+  transition: transform 0.5s ease;
 }
 
-.gallery-item:hover img {
-  transform: scale(1.08);
-}
+.gallery-item:hover img {transform: scale(1.05);}
 
+/* Lightbox */
 .lightbox {
   position: fixed;
   inset: 0;
-  background: rgba(10, 18, 16, 0.95);
+  background: rgba(10, 18, 16, 0.96);
   backdrop-filter: blur(20px);
   z-index: 9999;
   display: flex;
@@ -267,21 +191,15 @@ section {padding: 120px 0;}
   justify-content: center;
   opacity: 0;
   visibility: hidden;
-  transition: all 0.4s ease;
+  transition: all 0.3s ease;
 }
 
-.lightbox.active {
-  opacity: 1;
-  visibility: visible;
-}
+.lightbox.active {opacity: 1; visibility: visible;}
 
 .lightbox-content {
   position: relative;
   max-width: 90vw;
   max-height: 90vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .lightbox-img {
@@ -289,14 +207,11 @@ section {padding: 120px 0;}
   max-height: 90vh;
   object-fit: contain;
   border-radius: 12px;
-  box-shadow: 0 30px 100px rgba(0,0,0,0.5);
 }
 
-.lightbox-close {
+.lightbox-close,.lightbox-nav {
   position: absolute;
-  top: -50px;
-  left: 0;
-  background: var(--gold);
+  background: rgba(201, 169, 97, 0.9);
   color: var(--bg);
   border: none;
   width: 45px;
@@ -304,108 +219,49 @@ section {padding: 120px 0;}
   border-radius: 50%;
   font-size: 1.5rem;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
 }
 
-.lightbox-nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(201, 169, 97, 0.2);
-  border: 2px solid var(--gold);
-  color: var(--gold);
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  font-size: 1.8rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-}
+.lightbox-close {top: -55px; left: 0;}
+.lightbox-prev {right: -60px; top: 50%; transform: translateY(-50%);}
+.lightbox-next {left: -60px; top: 50%; transform: translateY(-50%);}
 
-.lightbox-prev {right: -70px;}
-.lightbox-next {left: -70px;}
-.lightbox-counter {
-  position: absolute;
-  bottom: -50px;
-  left: 50%;
-  transform: translateX(-50%);
-  color: var(--gold-light);
-  font-size: 1.1rem;
-  font-weight: 500;
-}
-
-.media-container {
+.media-container,.contact-card {
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: 24px;
-  padding: 50px;
+  border-radius: 20px;
+  padding: 40px;
 }
 
 .media-container iframe {
   width: 100%;
-  height: 500px;
-  border-radius: 16px;
+  aspect-ratio: 16/9;
+  border-radius: 12px;
   border: none;
 }
 
-.contact-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 24px;
-  padding: 70px 50px;
-  text-align: center;
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.contact-info {
-  font-size: 1.2rem;
-  color: var(--text-dim);
-  margin: 15px 0;
-}
+.contact-card {text-align: center; max-width: 700px; margin: 0 auto;}
 
 footer {
   text-align: center;
-  padding: 50px 20px;
+  padding: 40px 20px;
   border-top: 1px solid var(--border);
   color: var(--text-dim);
 }
 
 footer strong {color: var(--gold);}
 
-@keyframes fadeInRight {
-  from {opacity: 0; transform: translateX(40px);}
-  to {opacity: 1; transform: translateX(0);}
-}
-
-@keyframes fadeInLeft {
-  from {opacity: 0; transform: translateX(-40px);}
-  to {opacity: 1; transform: translateX(0);}
-}
-
 @media(max-width: 1024px) {
-.hero {grid-template-columns: 1fr; text-align: center;}
-.hero-image {order: -1; max-width: 500px; margin: 0 auto;}
-.hero-image img {height: 500px;}
-.btn-group {justify-content: center;}
-.bio-card {grid-template-columns: 1fr;}
-.gallery-grid {grid-template-columns: repeat(2, 1fr);}
-.lightbox-prev {right: 20px;}
-.lightbox-next {left: 20px;}
+.hero,.bio-card {grid-template-columns: 1fr;}
+.bio-img {position: static;}
+.hero-image {max-width: 500px; margin: 0 auto;}
+.lightbox-prev {right: 15px;}
+.lightbox-next {left: 15px;}
 }
 
 @media(max-width: 640px) {
 .container {padding: 0 20px;}
-  h1 {font-size: 2.8rem;}
-.section-title {font-size: 2.2rem;}
-.bio-card {padding: 30px 25px;}
-.gallery-grid {grid-template-columns: 1fr;}
+ section {padding: 70px 0;}
+.bio-card,.media-container,.contact-card {padding: 25px 20px;}
 }
 </style>
 </head>
@@ -416,21 +272,19 @@ footer strong {color: var(--gold);}
     <div class="hero-content">
       <div class="bismillah">بسم الله الرحمن الرحيم</div>
       <h1>الشيخ محمد منتصر الدح</h1>
-      <p class="hero-subtitle">كروان آل البيت • مطرب الأرواح • مربي المريدين</p>
-      <div class="divider"></div>
-      <p class="hero-verse">
+      <p style="font-size: 1.3rem; color: var(--text-dim); margin-bottom: 20px;">كروان آل البيت • مطرب الأرواح • مربي المريدين</p>
+      <p style="font-family: 'Amiri', serif; font-size: 1.2rem; color: var(--gold-light); line-height: 2; margin: 30px 0 40px;">
         "إِنَّ اللَّهَ وَمَلَائِكَتَهُ يُصَلُّونَ عَلَى النَّبِيِّ<br>
         يَا أَيُّهَا الَّذِينَ آمَنُوا صَلُّوا عَلَيْهِ وَسَلِّمُوا تَسْلِيمًا"
       </p>
       <div class="btn-group">
         <a href="#biography" class="btn btn-primary">السيرة العطرة</a>
         <a href="#gallery" class="btn btn-ghost">معرض الصور</a>
-        <a href="#media" class="btn btn-ghost">المكتبة الصوتية</a>
       </div>
     </div>
 
     <div class="hero-image">
-      <img src="images/sheikh-montaser-hero.jpg" alt="الشيخ محمد منتصر الدح">
+      <img src="./images/sheikh-montaser-hero.jpg" alt="الشيخ محمد منتصر الدح" loading="lazy">
     </div>
   </div>
 </section>
@@ -439,58 +293,30 @@ footer strong {color: var(--gold);}
   <div class="container">
     <div class="section-header">
       <h2 class="section-title">السيرة العطرة</h2>
-      <p class="section-subtitle">نبذة عن آل الدح وتراثهم الروحاني في صعيد مصر</p>
     </div>
 
     <div class="bio-wrapper">
-
       <div class="bio-card">
         <div class="bio-img">
-          <img src="images/sheikh-hasan.jpg" alt="العارف بالله الحاج حسن عمران الدح">
+          <img src="./images/sheikh-hasan.jpg" alt="العارف بالله الحاج حسن عمران الدح" loading="lazy">
         </div>
         <div class="bio-text">
           <h3>العارف بالله الحاج حسن عمران الدح</h3>
-          <p>
-            شيخ الطريقة الأحمدية الإدريسية بمركز إسنا، ومن أولياء الله الأكابر الغوثانيين.
-            عمل على إحياء ذكر الله والعودة إلى الله واستغفاره ومداومة الصلاة على رسول الله ﷺ.
-          </p>
-          <p>
-            قام بإحياء الطريقة الأحمدية الإدريسية المنسوبة إلى السيد أحمد بن إدريس رضي الله عنه.
-            مرت الطريقة بفترة ركود حتى فتح الله على شيخنا الجليل فاختاره السيد أحمد بن إدريس اختياراً باطنياً
-            بأمر من المصطفى ﷺ وآل بيته الكرام.
-          </p>
-          <p>
-            قضى حياته في إقامة مجالس الذكر لله تعالى، ومديح رسول الله ﷺ، وإطعام الفقراء والمساكين.
-            أنشأ العديد من الساحات على امتداد القطر المصري: في إسنا، الأقصر، قنا، القاهرة وغيرها.
-          </p>
-          <p>
-            انتقل إلى الرفيق الأعلى عام 1976 تاركاً تراثاً حافلاً من النهج القويم والسلوك الراقي.
-            خلفه أربعة أبناء: الشيخ حسين، الشيخ جمال، الشيخ عمران، والشيخ محمد منتصر.
-          </p>
+          <p>شيخ الطريقة الأحمدية الإدريسية بمركز إسنا، ومن أولياء الله الأكابر الغوثانيين. عمل على إحياء ذكر الله والعودة إلى الله واستغفاره ومداومة الصلاة على رسول الله ﷺ.</p>
+          <p>قام بإحياء الطريقة الأحمدية الإدريسية المنسوبة إلى السيد أحمد بن إدريس رضي الله عنه. مرت الطريقة بفترة ركود حتى فتح الله على شيخنا الجليل فاختاره السيد أحمد بن إدريس اختياراً باطنياً بأمر من المصطفى ﷺ وآل بيته الكرام.</p>
         </div>
       </div>
 
       <div class="bio-card">
         <div class="bio-img">
-          <img src="images/sheikh-montaser.jpg" alt="الشيخ محمد منتصر الدح">
+          <img src="./images/sheikh-montaser.jpg" alt="الشيخ محمد منتصر الدح" loading="lazy">
         </div>
         <div class="bio-text">
           <h3>الشيخ محمد منتصر الدح</h3>
-          <p>
-            كروان آل البيت وصوت الجنوب. أحد أعلام المديح النبوي والذكر الصوفي في صعيد مصر.
-            نشأ في بيت علم وذكر بمدينة إسنا بالأقصر، وحمل على عاتقه رسالة إحياء سنة المدح النبوي الشريف.
-          </p>
-          <p>
-            يتميز بصوته الهادئ المؤثر الذي يلامس القلوب ويبعث السكينة، فلقبه محبوه بـ "كروان آل البيت"
-            و"مطرب الأرواح". يقدم مجالس الذكر وراتب الجمعة والموالد النبوية بأسلوب يجمع بين الخشوع والتأثير.
-          </p>
-          <p>
-            يتبع الطريقة الأحمدية الإدريسية الشاذلية، وله ساحة ومضيفة عامرة بالذكر في مسقط رأسه بإسنا،
-            ويشارك بانتظام في الفعاليات الدينية داخل مصر وخارجها.
-          </p>
+          <p>كروان آل البيت وصوت الجنوب. أحد أعلام المديح النبوي والذكر الصوفي في صعيد مصر. نشأ في بيت علم وذكر بمدينة إسنا بالأقصر.</p>
+          <p>يتميز بصوته الهادئ المؤثر الذي يلامس القلوب ويبعث السكينة، فلقبه محبوه بـ "كروان آل البيت" و"مطرب الأرواح".</p>
         </div>
       </div>
-
     </div>
   </div>
 </section>
@@ -499,18 +325,20 @@ footer strong {color: var(--gold);}
   <div class="container">
     <div class="section-header">
       <h2 class="section-title">معرض الصور</h2>
-      <p class="section-subtitle">لقطات من مجالس الذكر والموالد النبوية</p>
     </div>
 
-    <div class="gallery-grid" id="galleryGrid">
-      <div class="gallery-item" data-index="0">
-        <img src="images/gallery1.jpg" alt="الشيخ محمد منتصر الدح">
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="./images/gallery1.jpg" alt="الشيخ محمد منتصر الدح" loading="lazy">
       </div>
-      <div class="gallery-item" data-index="1">
-        <img src="images/gallery2.jpg" alt="الشيخ محمد منتصر الدح أثناء المديح">
+      <div class="gallery-item">
+        <img src="./images/gallery2.jpg" alt="الشيخ محمد منتصر الدح أثناء المديح" loading="lazy">
       </div>
-      <div class="gallery-item" data-index="2">
-        <img src="images/gallery3.jpg" alt="الشيخ محمد منتصر الدح بالمسجد النبوي">
+      <div class="gallery-item">
+        <img src="./images/gallery3.jpg" alt="الشيخ محمد منتصر الدح بالمسجد النبوي" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img src="./images/gallery4.jpg" alt="مجلس الذكر" loading="lazy">
       </div>
     </div>
   </div>
@@ -519,12 +347,10 @@ footer strong {color: var(--gold);}
 <section id="media">
   <div class="container">
     <div class="section-header">
-      <h2 class="section-title">المكتبة الصوتية والمرئية</h2>
-      <p class="section-subtitle">مجموعة من المدائح والتلاوات بصوت الشيخ محمد منتصر الدح</p>
+      <h2 class="section-title">المكتبة الصوتية</h2>
     </div>
-
     <div class="media-container">
-      <iframe src="https://www.youtube.com/embed?listType=user_uploads&list=almontser" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed?listType=user_uploads&list=almontser" allowfullscreen loading="lazy"></iframe>
     </div>
   </div>
 </section>
@@ -532,13 +358,10 @@ footer strong {color: var(--gold);}
 <section id="contact">
   <div class="container">
     <div class="contact-card">
-      <h2 class="section-title" style="margin-bottom: 30px;">تواصل معنا</h2>
-      <p class="contact-info">📍 ساحة آل الدح - إسنا، الأقصر، جمهورية مصر العربية</p>
-      <p class="contact-info">📱 للاستفسار عن الموالد والمجالس: تواصل عبر رسائل الصفحة</p>
-
-      <div class="btn-group" style="margin-top: 40px; justify-content: center;">
+      <h2 class="section-title">تواصل معنا</h2>
+      <p style="font-size: 1.2rem; color: var(--text-dim); margin: 15px 0;">📍 ساحة آل الدح - إسنا، الأقصر</p>
+      <div class="btn-group" style="margin-top: 30px; justify-content: center;">
         <a href="https://www.facebook.com/share/1BKJStfFB8/" target="_blank" class="btn btn-primary">صفحة الفيسبوك</a>
-        <a href="https://youtube.com/@almontser?si=3iPJBVDED3U-oSoW" target="_blank" class="btn btn-ghost">قناة اليوتيوب</a>
       </div>
     </div>
   </div>
@@ -546,10 +369,7 @@ footer strong {color: var(--gold);}
 
 <footer>
   <p>© 2026 موقع آل الدح - جميع الحقوق محفوظة</p>
-  <p style="margin-top: 12px; font-size: 0.95rem;">اللهم صل وسلم وبارك على سيدنا محمد وعلى آله وصحبه وسلم</p>
-  <p style="margin-top: 18px; font-size: 0.9rem;">
-    تم التصميم والإشراف بواسطة: <strong>كريم عاطف</strong>
-  </p>
+  <p style="margin-top: 15px;">تم التصميم والإشراف بواسطة: <strong>كريم عاطف</strong></p>
 </footer>
 
 <div class="lightbox" id="lightbox">
@@ -558,20 +378,16 @@ footer strong {color: var(--gold);}
     <button class="lightbox-nav lightbox-prev" id="lightboxPrev">›</button>
     <button class="lightbox-nav lightbox-next" id="lightboxNext">‹</button>
     <img src="" alt="" class="lightbox-img" id="lightboxImg">
-    <div class="lightbox-counter" id="lightboxCounter">1 / 3</div>
+    <div class="lightbox-counter" id="lightboxCounter"></div>
   </div>
 </div>
 
 <script>
 const lightbox = document.getElementById('lightbox');
 const lightboxImg = document.getElementById('lightboxImg');
-const lightboxClose = document.getElementById('lightboxClose');
-const lightboxPrev = document.getElementById('lightboxPrev');
-const lightboxNext = document.getElementById('lightboxNext');
-const lightboxCounter = document.getElementById('lightboxCounter');
 const galleryItems = document.querySelectorAll('.gallery-item');
-
 let currentIndex = 0;
+
 const images = Array.from(galleryItems).map(item => ({
   src: item.querySelector('img').src,
   alt: item.querySelector('img').alt
@@ -579,7 +395,9 @@ const images = Array.from(galleryItems).map(item => ({
 
 function openLightbox(index) {
   currentIndex = index;
-  updateLightboxImage();
+  lightboxImg.src = images[index].src;
+  lightboxImg.alt = images[index].alt;
+  document.getElementById('lightboxCounter').textContent = `${index + 1} / ${images.length}`;
   lightbox.classList.add('active');
   document.body.classList.add('lightbox-open');
 }
@@ -589,50 +407,30 @@ function closeLightbox() {
   document.body.classList.remove('lightbox-open');
 }
 
-function updateLightboxImage() {
-  lightboxImg.src = images[currentIndex].src;
-  lightboxImg.alt = images[currentIndex].alt;
-  lightboxCounter.textContent = `${currentIndex + 1} / ${images.length}`;
-}
-
 function nextImage() {
   currentIndex = (currentIndex + 1) % images.length;
-  updateLightboxImage();
+  openLightbox(currentIndex);
 }
 
 function prevImage() {
   currentIndex = (currentIndex - 1 + images.length) % images.length;
-  updateLightboxImage();
+  openLightbox(currentIndex);
 }
 
 galleryItems.forEach((item, index) => {
   item.addEventListener('click', () => openLightbox(index));
 });
 
-lightboxClose.addEventListener('click', closeLightbox);
-lightboxNext.addEventListener('click', nextImage);
-lightboxPrev.addEventListener('click', prevImage);
-
-lightbox.addEventListener('click', (e) => {
-  if (e.target === lightbox) closeLightbox();
-});
+document.getElementById('lightboxClose').onclick = closeLightbox;
+document.getElementById('lightboxNext').onclick = nextImage;
+document.getElementById('lightboxPrev').onclick = prevImage;
+lightbox.onclick = (e) => {if(e.target === lightbox) closeLightbox();};
 
 document.addEventListener('keydown', (e) => {
-  if (!lightbox.classList.contains('active')) return;
-  if (e.key === 'Escape') closeLightbox();
-  if (e.key === 'ArrowRight') prevImage();
-  if (e.key === 'ArrowLeft') nextImage();
-});
-
-let touchStartX = 0;
-let touchEndX = 0;
-lightbox.addEventListener('touchstart', (e) => {
-  touchStartX = e.changedTouches[0].screenX;
-});
-lightbox.addEventListener('touchend', (e) => {
-  touchEndX = e.changedTouches[0].screenX;
-  if (touchEndX < touchStartX - 50) nextImage();
-  if (touchEndX > touchStartX + 50) prevImage();
+  if(!lightbox.classList.contains('active')) return;
+  if(e.key === 'Escape') closeLightbox();
+  if(e.key === 'ArrowRight') prevImage();
+  if(e.key === 'ArrowLeft') nextImage();
 });
 </script>
 
